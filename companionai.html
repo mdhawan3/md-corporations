@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Companion AI - MD AI Engine</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #0d0d0d;
+      color: #ff1a1a;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    header {
+      background-color: #1a1a1a;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #ff3333;
+    }
+
+    nav a {
+      color: #ff6666;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: 600;
+    }
+
+    .chat-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+
+    .message {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 10px;
+      max-width: 70%;
+    }
+
+    .user {
+      background-color: #330000;
+      align-self: flex-end;
+    }
+
+    .bot {
+      background-color: #1a1a1a;
+      border: 1px solid #ff1a1a;
+      align-self: flex-start;
+    }
+
+    .input-area {
+      padding: 1rem;
+      background-color: #1a1a1a;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-area input {
+      flex: 1;
+      padding: 0.8rem;
+      font-size: 1rem;
+      border-radius: 30px;
+      border: none;
+      outline: none;
+      margin-right: 1rem;
+    }
+
+    .input-area button {
+      background-color: #ff1a1a;
+      color: #fff;
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">Companion AI</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="ai.html">AI</a>
+    </nav>
+  </header>
+
+  <main class="chat-container" id="chat">
+    <div class="message bot">Hello! I'm Companion AI. Your assistant powered by MD AI. How can I help you today?</div>
+  </main>
+
+  <div class="input-area">
+    <input type="text" id="userInput" placeholder="Ask me anything..." onkeydown="handleKey(event)">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <script>
+    function handleKey(e) {
+      if (e.key === "Enter") {
+        sendMessage();
+      }
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('userInput');
+      const message = input.value.trim();
+      if (!message) return;
+
+      const chat = document.getElementById('chat');
+      const userMsg = document.createElement('div');
+      userMsg.className = 'message user';
+      userMsg.textContent = message;
+      chat.appendChild(userMsg);
+
+      const botMsg = document.createElement('div');
+      botMsg.className = 'message bot';
+      botMsg.textContent = getCompanionResponse(message);
+      chat.appendChild(botMsg);
+
+      input.value = '';
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function getCompanionResponse(input) {
+      const lower = input.toLowerCase();
+      if (lower.includes("weather")) {
+        return "I can't check live weather yet, but it's always red hot in MD Corp's world!";
+      }
+      if (lower.includes("who are you")) {
+        return "I'm Companion AI, the digital mind working for MD Corporations.";
+      }
+      if (lower.includes("hello") || lower.includes("hi")) {
+        return "Hi there! It's always good to hear from you.";
+      }
+      if (lower.includes("joke")) {
+        return "Why did the AI cross the road? Because it was programmed by a chicken!";
+      }
+      return "That's fascinating. Let's explore that more together.";
+    }
+  </script>
+</body>
+
+</html>
