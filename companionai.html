@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Companion AI - MD AI Engine</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
@@ -92,7 +90,6 @@
     }
   </style>
 </head>
-
 <body>
   <header>
     <div class="logo">Companion AI</div>
@@ -112,13 +109,15 @@
   </div>
 
   <script>
+    const apiKey = 'sk-REPLACE_WITH_YOUR_KEY'; // ⚠️ Replace with your actual API key
+
     function handleKey(e) {
       if (e.key === "Enter") {
         sendMessage();
       }
     }
 
-    function sendMessage() {
+    async function sendMessage() {
       const input = document.getElementById('userInput');
       const message = input.value.trim();
       if (!message) return;
@@ -131,30 +130,34 @@
 
       const botMsg = document.createElement('div');
       botMsg.className = 'message bot';
-      botMsg.textContent = getCompanionResponse(message);
+      botMsg.textContent = "Thinking...";
       chat.appendChild(botMsg);
 
       input.value = '';
       chat.scrollTop = chat.scrollHeight;
-    }
 
-    function getCompanionResponse(input) {
-      const lower = input.toLowerCase();
-      if (lower.includes("weather")) {
-        return "I can't check live weather yet, but it's always red hot in MD Corp's world!";
+      try {
+        const response = await fetch("https://api.openai.com/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${apiKey}`
+          },
+          body: JSON.stringify({
+            model: "gpt-3.5-turbo",
+            messages: [{ role: "user", content: message }]
+          })
+        });
+
+        const data = await response.json();
+        botMsg.textContent = data.choices?.[0]?.message?.content || "No response.";
+      } catch (error) {
+        botMsg.textContent = "Error contacting MD AI Engine.";
+        console.error(error);
       }
-      if (lower.includes("who are you")) {
-        return "I'm Companion AI, the digital mind working for MD Corporations.";
-      }
-      if (lower.includes("hello") || lower.includes("hi")) {
-        return "Hi there! It's always good to hear from you.";
-      }
-      if (lower.includes("joke")) {
-        return "Why did the AI cross the road? Because it was programmed by a chicken!";
-      }
-      return "That's fascinating. Let's explore that more together.";
+
+      chat.scrollTop = chat.scrollHeight;
     }
   </script>
 </body>
-
 </html>
