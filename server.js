@@ -6,7 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // 👇 Replace this with YOUR secret key
-const OPENAI_API_KEY = "AIzaSyCIujoslWN-H4qohlVd9xAnT0VhlcomqSk";
+const OPENAI_API_KEY = "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";
 
 app.use(express.static(__dirname)); // Serves index.html and assets
 app.use(express.json());
