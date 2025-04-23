@@ -97,6 +97,7 @@
 
   <script>
     const OPENAI_API_KEY = "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";
+    const proxyUrl = "https://corsproxy.io/?";
 
     function handleKey(e) {
       if (e.key === "Enter") sendMessage();
@@ -123,7 +124,7 @@
       chat.scrollTop = chat.scrollHeight;
 
       try {
-        const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        const response = await fetch(proxyUrl + "https://api.openai.com/v1/chat/completions", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -138,7 +139,7 @@
         const data = await response.json();
         botMsg.textContent = data.choices?.[0]?.message?.content || "No response.";
       } catch (error) {
-        botMsg.textContent = "Error contacting MD AI Engine.";
+        botMsg.textContent = "Error contacting OpenAI.";
         console.error(error);
       }
 
