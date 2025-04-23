@@ -5,7 +5,6 @@
   <title>Companion AI - MD AI Engine</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
   <style>
-    /* (same CSS you had, no changes needed) */
     body {
       margin: 0;
       font-family: 'Orbitron', sans-serif;
@@ -84,10 +83,7 @@
 <body>
   <header>
     <div class="logo">Companion AI</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="ai.html">AI</a>
-    </nav>
+    <nav><a href="index.html">Home</a><a href="ai.html">AI</a></nav>
   </header>
 
   <main class="chat-container" id="chat">
@@ -100,6 +96,8 @@
   </div>
 
   <script>
+    const OPENAI_API_KEY = "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";
+
     function handleKey(e) {
       if (e.key === "Enter") sendMessage();
     }
@@ -110,6 +108,7 @@
       if (!message) return;
 
       const chat = document.getElementById('chat');
+
       const userMsg = document.createElement('div');
       userMsg.className = 'message user';
       userMsg.textContent = message;
@@ -124,14 +123,20 @@
       chat.scrollTop = chat.scrollHeight;
 
       try {
-        const response = await fetch("/ask", {
+        const response = await fetch("https://api.openai.com/v1/chat/completions", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message })
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${OPENAI_API_KEY}`
+          },
+          body: JSON.stringify({
+            model: "gpt-3.5-turbo",
+            messages: [{ role: "user", content: message }]
+          })
         });
 
         const data = await response.json();
-        botMsg.textContent = data.reply || "No response.";
+        botMsg.textContent = data.choices?.[0]?.message?.content || "No response.";
       } catch (error) {
         botMsg.textContent = "Error contacting MD AI Engine.";
         console.error(error);
