@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poly Track</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            background-color: #0d0d0d;
+            color: #ff1a1a;
+            display: grid;
+            grid-template-columns: 1fr 3fr 1fr;
+            grid-template-rows: auto 1fr auto;
+            height: 100vh;
+        }
+
+        header {
+            grid-column: 1 / 4;
+            background-color: #1a1a1a;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ff3333;
+        }
+
+        nav a {
+            color: #ff1a1a;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+        }
+
+        .game-container {
+            grid-column: 2 / 3;
+            grid-row: 2 / 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #1a1a1a;
+            border: 2px solid #ff1a1a;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            width: 90%; /* Makes the container wider */
+            height: 70%; /* Makes the container taller */
+            margin: auto; /* Centers the container */
+        }
+
+        iframe {
+            width: 100%; /* Fills the container */
+            height: 100%; /* Fills the container */
+            border: none;
+        }
+
+        .side-boxes {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 1rem;
+        }
+
+        .bottom-boxes {
+            grid-column: 1 / 4;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem;
+        }
+
+        .box {
+            background-color: #1a1a1a;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+            aspect-ratio: 1;
+        }
+
+        .box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+
+        footer {
+            grid-column: 1 / 4;
+            background-color: #0a0a0a;
+            color: #ff4d4d;
+            text-align: center;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Poly Track</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="games.html">Games</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+
+    <div class="side-boxes" style="grid-column: 1 / 2; grid-row: 2 / 3;">
+        <div class="box"><a href="game1.html"><img src="images/game1.jpg" alt="Game 1"></a></div>
+        <div class="box"><a href="game2.html"><img src="images/game2.jpg" alt="Game 2"></a></div>
+        <div class="box"><a href="game3.html"><img src="images/game3.jpg" alt="Game 3"></a></div>
+    </div>
+
+    <div class="game-container">
+        <iframe src="https://www.kodub.com/apps/polytrack" title="Poly Track"></iframe>
+    </div>
+
+    <div class="side-boxes" style="grid-column: 3 / 4; grid-row: 2 / 3;">
+        <div class="box"><a href="game4.html"><img src="images/game4.jpg" alt="Game 4"></a></div>
+        <div class="box"><a href="game5.html"><img src="images/game5.jpg" alt="Game 5"></a></div>
+        <div class="box"><a href="game6.html"><img src="images/game6.jpg" alt="Game 6"></a></div>
+    </div>
+
+    <div class="bottom-boxes">
+        <div class="box"><a href="game7.html"><img src="images/game7.jpg" alt="Game 7"></a></div>
+        <div class="box"><a href="game8.html"><img src="images/game8.jpg" alt="Game 8"></a></div>
+        <div class="box"><a href="game9.html"><img src="images/game9.jpg" alt="Game 9"></a></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 MD Corporations. All rights reserved.</p>
+    </footer>
+</body>
+</html>

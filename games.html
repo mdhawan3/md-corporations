@@ -57,10 +57,11 @@
         }
 
         .game-wall {
-            padding: 4rem 2rem;
+            padding: 2rem;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 0.5rem; /* Ensures equal gaps between all slots */
+            grid-auto-rows: 150px; /* Ensures all slots are squares */
+            gap: 0.6rem; /* Tiny but equal gaps between items */
         }
 
         .game-slot {
@@ -80,32 +81,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-
-        /* Different slot sizes */
-        .game-slot.square {
-            grid-column: span 1;
-            grid-row: span 1;
-        }
-
-        .game-slot.vertical-rectangle {
-            grid-column: span 1;
-            grid-row: span 2;
-        }
-
-        .game-slot.large-square {
-            grid-column: span 2;
-            grid-row: span 2;
-        }
-
-        .game-slot.tall-rectangle {
-            grid-column: span 1;
-            grid-row: span 3;
-        }
-
-        .game-slot.extra-large-square {
-            grid-column: span 3;
-            grid-row: span 3;
         }
 
         footer {
@@ -138,37 +113,37 @@
 
     <main>
         <section class="game-wall">
-            <!-- Example of 50 game slots with variety -->
-            <div class="game-slot square"><img src="images/game1.jpg" alt="Game 1"></div>
-            <div class="game-slot vertical-rectangle"><img src="game2.jpg" alt="Game 2"></div>
-            <div class="game-slot large-square"><img src="game3.jpg" alt="Game 3"></div>
-            <div class="game-slot tall-rectangle"><img src="game4.jpg" alt="Game 4"></div>
-            <div class="game-slot square"><img src="game5.jpg" alt="Game 5"></div>
-            <div class="game-slot vertical-rectangle"><img src="game6.jpg" alt="Game 6"></div>
-            <div class="game-slot square"><img src="game7.jpg" alt="Game 7"></div>
-            <div class="game-slot large-square"><img src="game8.jpg" alt="Game 8"></div>
-            <div class="game-slot square"><img src="game9.jpg" alt="Game 9"></div>
-            <div class="game-slot tall-rectangle"><img src="game10.jpg" alt="Game 10"></div>
-            <div class="game-slot vertical-rectangle"><img src="game11.jpg" alt="Game 11"></div>
-            <div class="game-slot square"><img src="game12.jpg" alt="Game 12"></div>
-            <div class="game-slot large-square"><img src="game13.jpg" alt="Game 13"></div>
-            <div class="game-slot square"><img src="game14.jpg" alt="Game 14"></div>
-            <div class="game-slot vertical-rectangle"><img src="game15.jpg" alt="Game 15"></div>
-            <div class="game-slot square"><img src="game16.jpg" alt="Game 16"></div>
-            <div class="game-slot extra-large-square"><img src="game17.jpg" alt="Game 17"></div>
-            <div class="game-slot square"><img src="game18.jpg" alt="Game 18"></div>
-            <div class="game-slot vertical-rectangle"><img src="game19.jpg" alt="Game 19"></div>
-            <div class="game-slot square"><img src="game20.jpg" alt="Game 20"></div>
-            <div class="game-slot large-square"><img src="game21.jpg" alt="Game 21"></div>
-            <div class="game-slot square"><img src="game22.jpg" alt="Game 22"></div>
-            <div class="game-slot tall-rectangle"><img src="game23.jpg" alt="Game 23"></div>
-            <div class="game-slot square"><img src="game24.jpg" alt="Game 24"></div>
-            <div class="game-slot vertical-rectangle"><img src="game25.jpg" alt="Game 25"></div>
-            <div class="game-slot square"><img src="game26.jpg" alt="Game 26"></div>
-            <div class="game-slot large-square"><img src="game27.jpg" alt="Game 27"></div>
-            <div class="game-slot square"><img src="game28.jpg" alt="Game 28"></div>
-            <div class="game-slot vertical-rectangle"><img src="game29.jpg" alt="Game 29"></div>
-            <div class="game-slot square"><img src="game30.jpg" alt="Game 30"></div>
+            <!-- All game slots are squares -->
+            <div class="game-slot"><img src="images/game1.jpg" alt="Game 1"></div>
+            <div class="game-slot"><img src="images/game2.jpg" alt="Game 2"></div>
+            <div class="game-slot"><img src="images/game3.jpg" alt="Game 3"></div>
+            <div class="game-slot"><img src="images/game4.jpg" alt="Game 4"></div>
+            <div class="game-slot"><img src="images/game5.jpg" alt="Game 5"></div>
+            <div class="game-slot"><img src="game6.jpg" alt="Game 6"></div>
+            <div class="game-slot"><img src="game7.jpg" alt="Game 7"></div>
+            <div class="game-slot"><img src="game8.jpg" alt="Game 8"></div>
+            <div class="game-slot"><img src="game9.jpg" alt="Game 9"></div>
+            <div class="game-slot"><img src="game10.jpg" alt="Game 10"></div>
+            <div class="game-slot"><img src="game11.jpg" alt="Game 11"></div>
+            <div class="game-slot"><img src="game12.jpg" alt="Game 12"></div>
+            <div class="game-slot"><img src="game13.jpg" alt="Game 13"></div>
+            <div class="game-slot"><img src="game14.jpg" alt="Game 14"></div>
+            <div class="game-slot"><img src="game15.jpg" alt="Game 15"></div>
+            <div class="game-slot"><img src="game16.jpg" alt="Game 16"></div>
+            <div class="game-slot"><img src="game17.jpg" alt="Game 17"></div>
+            <div class="game-slot"><img src="game18.jpg" alt="Game 18"></div>
+            <div class="game-slot"><img src="game19.jpg" alt="Game 19"></div>
+            <div class="game-slot"><img src="game20.jpg" alt="Game 20"></div>
+            <div class="game-slot"><img src="game21.jpg" alt="Game 21"></div>
+            <div class="game-slot"><img src="game22.jpg" alt="Game 22"></div>
+            <div class="game-slot"><img src="game23.jpg" alt="Game 23"></div>
+            <div class="game-slot"><img src="game24.jpg" alt="Game 24"></div>
+            <div class="game-slot"><img src="game25.jpg" alt="Game 25"></div>
+            <div class="game-slot"><img src="game26.jpg" alt="Game 26"></div>
+            <div class="game-slot"><img src="game27.jpg" alt="Game 27"></div>
+            <div class="game-slot"><img src="game28.jpg" alt="Game 28"></div>
+            <div class="game-slot"><img src="game29.jpg" alt="Game 29"></div>
+            <div class="game-slot"><img src="game30.jpg" alt="Game 30"></div>
         </section>
     </main>
 
