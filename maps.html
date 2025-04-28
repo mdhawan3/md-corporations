@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MD Corporations - Explore the World with Maps">
+  <meta name="keywords" content="MD Corporations, maps, navigation, directions, explore">
+  <meta name="author" content="MD Corporations">
+  <link rel="icon" type="image/png" href="images/mdcorporationslogo.png">
+  <title>MD Maps</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #0d0d0d;
+      color: #ff1a1a;
+    }
+
+    header {
+      background-color: #1a1a1a;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #ff3333;
+    }
+
+    nav a {
+      color: #ff1a1a;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(145deg, #1a0000, #330000);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .map-container {
+      margin: 2rem auto;
+      width: 90%;
+      height: 600px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+      overflow: hidden;
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+    }
+
+    .search-box {
+      width: 60%;
+      padding: 1rem;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      border: none;
+      outline: none;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+      background-color: #1a1a1a;
+      color: #ff1a1a;
+      margin: 1rem auto;
+      display: block;
+    }
+
+    footer {
+      background-color: #0a0a0a;
+      color: #ff4d4d;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 4rem;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="logo">MD Maps</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="games.html">Games</a>
+      <a href="companionai.html">AI</a>
+      <a href="#">More</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Explore the World with MD Maps</h1>
+    <p>Navigate, explore, and discover new places with ease.</p>
+    <input id="searchBox" class="search-box" type="text" placeholder="Enter a location...">
+  </section>
+
+  <div class="map-container">
+    <div id="map"></div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 MD Corporations. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Initialize the map
+    const map = L.map('map').setView([37.7749, -122.4194], 13); // Default location: San Francisco
+
+    // Add satellite tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Add a marker
+    const marker = L.marker([37.7749, -122.4194]).addTo(map);
+    marker.bindPopup('<b>San Francisco</b><br>Welcome to MD Maps!').openPopup();
+
+    // Add routing control
+    const routingControl = L.Routing.control({
+      waypoints: [],
+      routeWhileDragging: true,
+      createMarker: function(i, waypoint, n) {
+        return L.marker(waypoint.latLng, {
+          icon: i === 0 || i === n - 1 ? L.icon({
+            iconUrl: 'https://cdn-icons-png.flaticon.com/512/1946/1946488.png', // Car icon
+            iconSize: [30, 30]
+          }) : undefined
+        });
+      }
+    }).addTo(map);
+
+    // Search functionality
+    const searchBox = document.getElementById('searchBox');
+    searchBox.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const query = searchBox.value;
+        fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`)
+          .then(response => response.json())
+          .then(data => {
+            if (data.length > 0) {
+              const lat = data[0].lat;
+              const lon = data[0].lon;
+              map.setView([lat, lon], 13);
+              routingControl.setWaypoints([
+                L.latLng(37.7749, -122.4194), // Default start point
+                L.latLng(lat, lon) // Destination
+              ]);
+            } else {
+              alert('Location not found!');
+            }
+          });
+      }
+    });
+  </script>
+</body>
+
+</html>
