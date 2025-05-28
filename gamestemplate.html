@@ -49,57 +49,56 @@
             grid-column: 2 / 3;
             grid-row: 2 / 3;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem;
+            height: 100%;
+        }
+
+        .iframe-container {
+            width: 100%;
+            aspect-ratio: 16/9;
             background-color: #1a1a1a;
             border: 2px solid #ff1a1a;
             border-radius: 0.5rem;
             overflow: hidden;
-            width: 90%; /* Makes the container wider */
-            height: 70%; /* Makes the container taller */
-            margin: auto; /* Centers the container */
         }
 
         iframe {
-            width: 100%; /* Fills the container */
-            height: 100%; /* Fills the container */
+            width: 100%;
+            height: 100%;
             border: none;
         }
 
-        .side-boxes {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+        .description-box {
+            width: 100%;
+            background-color: #1a1a1a;
+            border: 2px solid #ff1a1a;
+            border-radius: 0.5rem;
             padding: 1rem;
+            color: #ff1a1a;
+            flex-grow: 1;
         }
 
-        .bottom-boxes {
-            grid-column: 1 / 4;
+        .side-boxes {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(2, 1fr);
+            gap: 1rem;
+            padding: 1rem;
+            height: 100%;
+        }
+
+        .ad-box {
+            background-color: #1a1a1a;
+            border: 2px solid #ff1a1a;
+            border-radius: 0.5rem;
             display: flex;
             justify-content: center;
-            gap: 0.5rem;
-            padding: 1rem;
-        }
-
-        .box {
-            background-color: #1a1a1a;
-            border-radius: 0.5rem;
-            overflow: hidden;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
-            width: 100%;
-            aspect-ratio: 1;
-        }
-
-        .box img {
-            width: 100%;
+            align-items: center;
+            color: #ff1a1a;
+            font-size: 1.2rem;
             height: 100%;
-            object-fit: cover;
-        }
-
-        .box:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
         }
 
         footer {
@@ -122,25 +121,29 @@
     </header>
 
     <div class="side-boxes" style="grid-column: 1 / 2; grid-row: 2 / 3;">
-        <div class="box"><a href="game1.html"><img src="images/game1.jpg" alt="Game 1"></a></div>
-        <div class="box"><a href="game2.html"><img src="images/game2.jpg" alt="Game 2"></a></div>
-        <div class="box"><a href="game3.html"><img src="images/game3.jpg" alt="Game 3"></a></div>
+        <div class="ad-box">Advertisement</div>
+        <div class="ad-box">Advertisement</div>
     </div>
 
     <div class="game-container">
-        <iframe src="https://www.gamearter.com/game/nascar-racing/" title="Nascar Racing"></iframe>
+        <div class="iframe-container">
+            <iframe src="https://www.gamearter.com/game/nascar-racing/" title="Nascar Racing"></iframe>
+        </div>
+        <div class="description-box">
+            <h2>Nascar Racing</h2>
+            <p>Experience the thrill of high-speed racing in this action-packed NASCAR game. Compete against other drivers, master challenging tracks, and become the ultimate racing champion!</p>
+            <p>Controls:</p>
+            <ul>
+                <li>Arrow Keys or WASD - Drive the car</li>
+                <li>Space - Brake/Reverse</li>
+                <li>Shift - Boost</li>
+            </ul>
+        </div>
     </div>
 
     <div class="side-boxes" style="grid-column: 3 / 4; grid-row: 2 / 3;">
-        <div class="box"><a href="game4.html"><img src="images/game4.jpg" alt="Game 4"></a></div>
-        <div class="box"><a href="game5.html"><img src="images/game5.jpg" alt="Game 5"></a></div>
-        <div class="box"><a href="game6.html"><img src="images/game6.jpg" alt="Game 6"></a></div>
-    </div>
-
-    <div class="bottom-boxes">
-        <div class="box"><a href="game7.html"><img src="images/game7.jpg" alt="Game 7"></a></div>
-        <div class="box"><a href="game8.html"><img src="images/game8.jpg" alt="Game 8"></a></div>
-        <div class="box"><a href="game9.html"><img src="images/game9.jpg" alt="Game 9"></a></div>
+        <div class="ad-box">Advertisement</div>
+        <div class="ad-box">Advertisement</div>
     </div>
 
     <footer>
